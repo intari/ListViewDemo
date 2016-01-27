@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MergeAdapterDemo</string>
+    <string name="before">Ранее</string>
+    <string name="threedaysago">3 дня назад</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+    <string name="twodaysago">Позавчера</string>
+    <string name="loadingData">Идет загрузка</string>
+
+</resources>

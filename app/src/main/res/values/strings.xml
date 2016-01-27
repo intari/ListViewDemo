@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MergeAdapterDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="twodaysago">2 days ago</string>
+    <string name="threedaysago">3 days ago</string>
+    <string name="before">Before</string>
+    <string name="unknown">Unknown</string>
+    <string name="loadingData">Loading data</string>
+</resources>
