@@ -3,7 +3,7 @@ language: android
 jdk: oraclejdk7
 env:
   global:
-   - ANDROID_ABI=armeabi-v7a
+   - ANDROID_ABI=google_apis/armeabi-v7a
    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
 
   matrix:
@@ -23,7 +23,7 @@ android:
   #- sys-img-$ANDROID_ABI-android-$ANDROID_TARGET
   # Google Play Services
   - extra-google-google_play_services
-  - sys-img-$ANDROID_ABI-addon-google_apis-google-$ANDROID_TARGET
+  - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_TARGET
 
 # Emulator Management: Create, Start and Wait
 before_script:
