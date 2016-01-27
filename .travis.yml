@@ -6,6 +6,8 @@ env:
 android:
   components:
   - android-23
-  - build-tools-23.0.1
+  - build-tools-23.0.2
   - platform-tools
   - tools
+  - extra-android-m2repository
+  - extra-google-m2repository
