@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MergeAdapterDemo</string>
-    <string name="action_settings">Settings</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="twodaysago">2 days ago</string>
