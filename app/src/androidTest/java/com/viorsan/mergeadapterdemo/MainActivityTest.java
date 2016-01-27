@@ -7,7 +7,6 @@ import org.junit.Test;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
@@ -26,8 +25,10 @@ public class MainActivityTest {
     @Test
     public void shouldHaveToday() {
         // then
-        onView(withText("Today")).check(matches(isDisplayed()));
+        onView(withText(R.string.today)).check(matches(isDisplayed()));
+
     }
+
 
     /**
      * Есть контрол с 'Before' - локализуемым ресурсом
