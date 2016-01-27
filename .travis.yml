@@ -28,10 +28,7 @@ script:
     - ./gradlew connectedCheck
     
   
-before_install:
-  - pip install codecov
   
 after_success:
-  - codecov
-  #- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
     
