@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -84,7 +85,8 @@ public class MainActivity extends ListActivity {
 
             setListAdapter(adapter);
             //разделитель нам не нужен
-            getListView().setDivider(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            //getResources().getColor() deprecated на Android 6.0
+            getListView().setDivider(new ColorDrawable(ContextCompat.getColor(MainActivity.this,android.R.color.transparent)));
             getListView().setDividerHeight(0);
             //все, убираем Progress Bar
             progress.dismiss();
