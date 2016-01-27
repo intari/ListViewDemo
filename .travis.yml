@@ -2,8 +2,10 @@
 language: android
 jdk: oraclejdk7
 env:
-  matrix:
-  - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
+  global:
+  - ANDROID_TARGET=android-23  
+  - ANDROID_ABI=armeabi-v7a
+  - ADB_INSTALL_TIMEOUT=8 # minutes
 
 # Emulator Management: Create, Start and Wait
 before_script:
