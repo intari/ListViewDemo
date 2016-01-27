@@ -21,7 +21,7 @@ android:
  
 script:
     - ./gradlew clean build jacocoTestReport assembleAndroidTest
-    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI -s "1080x1920"
     - emulator -avd test -no-skin -no-audio -no-window &
     - android-wait-for-emulator
     - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
