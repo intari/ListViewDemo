@@ -34,7 +34,7 @@ public class MainActivityTest {
     @Test
     public void shouldHaveBefore() {
         // then
-        onView(withText(R.string.before)).check(matches(isDisplayed()));
+        onView(withText("Before")).check(matches(isDisplayed()));
     }
 
 }
