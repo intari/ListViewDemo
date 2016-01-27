@@ -10,6 +10,8 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 
 /**
@@ -31,6 +33,7 @@ public class MainActivityTest {
     public void shouldHaveToday() {
         // then
         onView(withText(R.string.today)).check(matches(isDisplayed()));
+        //onData(allOf(is(instanceOf(String.class)), is(R.string.today)));
 
     }
 
@@ -41,6 +44,8 @@ public class MainActivityTest {
     public void shouldHaveBefore() {
         // then
         onData(allOf(withText(R.string.before))).check(matches(isDisplayed()));
+        //onData(allOf(is(instanceOf(String.class)), is(R.string.before)));
+
     }
     @Test
     public void shouldHaveYesterday() {
@@ -51,12 +56,15 @@ public class MainActivityTest {
     public void shouldHaveTwoDaysAgo() {
         // then
         onData(allOf(withText(R.string.twodaysago))).check(matches(isDisplayed()));
+        //onData(allOf(is(instanceOf(String.class)), is(R.string.twodaysago)));
+
     }
     @Test
     public void shouldHaveThreeDaysAgo() {
         // then
         onData(allOf(withText(R.string.threedaysago))).check(matches(isDisplayed()));
-    }
+        //onData(allOf(is(instanceOf(String.class)), is(R.string.threedaysago)));
 
+    }
 
 }
