@@ -3,16 +3,7 @@ repositories {
         url "https://s3.amazonaws.com/repo.commonsware.com"
     }
 }
-//плагин для скачивания нужны зависимостей чтобы не зависить от того установлены ли они корректно
-//https://github.com/JakeWharton/sdk-manager-plugin
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
-
-// optionally including an emulator
-sdkManager {
-    //emulatorVersion 'android-19'
-    //emulatorArchitecture 'armeabi-v7a' // optional, defaults to arm
-}
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
