@@ -1,8 +1,17 @@
+#based on https://docs.travis-ci.com/user/languages/android
 language: android
 jdk: oraclejdk7
 env:
   matrix:
   - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
+
+# Emulator Management: Create, Start and Wait
+before_script:
+  - echo no | android create avd --force -n test -t android-23 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+  
 android:
   components:
   - android-23
@@ -11,3 +20,7 @@ android:
   - tools
   - extra-android-m2repository
   - extra-google-m2repository
+  # emulator (if we want to test a little)
+  - sys-img-armeabi-v7a-android-23
+  
+  
