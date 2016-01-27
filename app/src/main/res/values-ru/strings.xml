@@ -6,6 +6,7 @@
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
     <string name="twodaysago">Позавчера</string>
+    <string name="unknown">Неизвестно</string>
     <string name="loadingData">Идет загрузка</string>
 
 </resources>
