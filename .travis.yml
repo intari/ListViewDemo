@@ -4,16 +4,10 @@ jdk: oraclejdk7
 
 env:
   global:
-  - ANDROID_TARGET=android-23  
+  - ANDROID_TARGET=android-15  
   - ANDROID_ABI=armeabi-v7a
   - ADB_INSTALL_TIMEOUT=8 # minutes
 
-# Emulator Management: Create, Start and Wait
-#before_script:
-#  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-#  - emulator -avd test -no-audio -no-window &
-#  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &
   
 android:
   components:
@@ -23,15 +17,17 @@ android:
   - tools
   - extra-android-m2repository
   - extra-google-m2repository
-  # emulator (if we want to test a little)
-  - sys-img-armeabi-v7a-android-21
+  - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
  
 script:
-    #fix for android bug https://code.google.com/p/android/issues/detail?id=189764&q=label%3APriority-Medium&colspec=ID%20Type%20Status%20Owner%20Summary%20Stars
-    - ./gradlew clean assemble lint 
-    # ./gradlew assembleDebug assembleDebugAndroidTest
-    #- adb install app/build/outputs/apk/app-debug.apk
-    #- adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
-    #- adb shell am instrument -w com.google.samples.apps.topeka.test/android.support.test.runner.AndroidJUnitRunner
+    - ./gradlew clean build jacocoTestReport assembleAndroidTest
+    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
+    - ./gradlew connectedCheck
+    
   
-  
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+    
