@@ -15,7 +15,8 @@ android:
   - extra-android-m2repository
   - extra-google-m2repository
   # emulator (if we want to test a little)
-  - sys-img-armeabi-v7a-android-23
+  #- sys-img-armeabi-v7a-android-23
+  - sys-img-$ANDROID_ABI-$ANDROID_TARGET
 
 # Emulator Management: Create, Start and Wait
 before_script:
