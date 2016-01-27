@@ -4,5 +4,3 @@ Code comments are in Russian.
 
 [![Travis CI Build Status](https://travis-ci.org/intari/MergeAdapterDemo.svg)](https://travis-ci.org/intari/MergeAdapterDemo)
 
-[![Circle CI Build Status](https://circleci.com/gh/intari/MergeAdapterDemo.svg?style=svg)](https://circleci.com/gh/intari/MergeAdapterDemo)
-
