@@ -2,23 +2,26 @@
 language: android
 jdk: oraclejdk7
 env:
+  global:
+   - ANDROID_ABI=armeabi-v7a
+   - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+
   matrix:
-  - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
-  - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
+  - ANDROID_TARGET=android-23
+  - ANDROID_TARGET=android-22
   
 android:
   components:
-  - android-23
-  - android-22
+  - $ANDROID_TARGET
   - build-tools-23.0.1
   - platform-tools
   - tools
   - extra-android-m2repository
   - extra-google-m2repository
   # emulator (if we want to test a little)
-  - sys-img-armeabi-v7a-android-23
-  - sys-img-armeabi-v7a-android-22
-  #- sys-img-$ANDROID_ABI-$ANDROID_TARGET
+  #- sys-img-armeabi-v7a-android-23
+  #- sys-img-armeabi-v7a-android-22
+  - sys-img-$ANDROID_ABI-$ANDROID_TARGET
 
 # Emulator Management: Create, Start and Wait
 before_script:
