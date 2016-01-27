@@ -35,23 +35,23 @@ public class MainActivityTest {
     @Test
     public void shouldHaveBefore() {
         // then
-        onView(withId(R.string.before)).check(matches(isDisplayed()));
+        onView(withText(R.string.before)).check(matches(isDisplayed()));
     }
 
     @Test
     public void shouldHaveYesterday() {
         // then
-        onView(withId(R.string.yesterday)).check(matches(isDisplayed()));
+        onView(withText(R.string.yesterday)).check(matches(isDisplayed()));
     }
     @Test
     public void shouldHaveTwoDaysAgo() {
         // then
-        onView(withId(R.string.twodaysago)).check(matches(isDisplayed()));
+        onView(withText(R.string.twodaysago)).check(matches(isDisplayed()));
     }
     @Test
     public void shouldHaveThreeDaysAgo() {
         // then
-        onView(withId(R.string.threedaysago)).check(matches(isDisplayed()));
+        onView(withText(R.string.threedaysago)).check(matches(isDisplayed()));
     }
 
 
