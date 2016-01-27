@@ -9,11 +9,11 @@ env:
   - ADB_INSTALL_TIMEOUT=8 # minutes
 
 # Emulator Management: Create, Start and Wait
-before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+#before_script:
+#  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+#  - emulator -avd test -no-audio -no-window &
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82 &
   
 android:
   components:
@@ -28,9 +28,10 @@ android:
  
 script:
     #fix for android bug https://code.google.com/p/android/issues/detail?id=189764&q=label%3APriority-Medium&colspec=ID%20Type%20Status%20Owner%20Summary%20Stars
-    - ./gradlew clean assemble lint assembleDebug assembleDebugAndroidTest
-    - adb install app/build/outputs/apk/app-debug.apk
-    - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
-    - adb shell am instrument -w com.google.samples.apps.topeka.test/android.support.test.runner.AndroidJUnitRunner
+    - ./gradlew clean assemble lint 
+    # ./gradlew assembleDebug assembleDebugAndroidTest
+    #- adb install app/build/outputs/apk/app-debug.apk
+    #- adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+    #- adb shell am instrument -w com.google.samples.apps.topeka.test/android.support.test.runner.AndroidJUnitRunner
   
   
