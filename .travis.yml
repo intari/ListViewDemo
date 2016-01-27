@@ -30,5 +30,13 @@ android:
   - extra-google-m2repository
   # emulator (if we want to test a little)
   - sys-img-armeabi-v7a-android-23
-  
+ 
+script:
+    #fix for android bug https://code.google.com/p/android/issues/detail?id=189764&q=label%3APriority-Medium&colspec=ID%20Type%20Status%20Owner%20Summary%20Stars
+    ./gradlew clean
+    ./gradlew assembleDebug
+    ./gradlew assembleDebugAndroidTest
+    adb install app/build/outputs/apk/app-debug.apk
+    adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+    adb shell am instrument -w com.google.samples.apps.topeka.test/android.support.test.runner.AndroidJUnitRunner
   
