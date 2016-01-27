@@ -7,6 +7,7 @@ import org.junit.Test;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
@@ -34,7 +35,25 @@ public class MainActivityTest {
     @Test
     public void shouldHaveBefore() {
         // then
-        onView(withText("Before")).check(matches(isDisplayed()));
+        onView(withId(R.string.before)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void shouldHaveYesterday() {
+        // then
+        onView(withId(R.string.yesterday)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void shouldHaveTwoDaysAgo() {
+        // then
+        onView(withId(R.string.twodaysago)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void shouldHaveThreeDaysAgo() {
+        // then
+        onView(withId(R.string.threedaysago)).check(matches(isDisplayed()));
+    }
+
+
 
 }
