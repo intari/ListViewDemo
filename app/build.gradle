@@ -24,6 +24,10 @@ android {
             testCoverageEnabled true
         }
     }
+    //https://code.google.com/p/android/issues/detail?id=104305
+    adbOptions {
+        timeOutInMs 5 * 60 * 1000 // 5 minutes
+    }
 }
 
 dependencies {
