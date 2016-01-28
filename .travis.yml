@@ -1,6 +1,5 @@
-#based on https://docs.travis-ci.com/user/languages/android
 language: android
-jdk: oraclejdk7
+jdk: oraclejdk8
 
 env:
   global:
