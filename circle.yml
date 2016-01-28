@@ -18,7 +18,7 @@ test:
     #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
     #- echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
     #this COULD work: https://circleci.com/gh/intari/ListViewDemo/19
-    - android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
+    - android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:21" --abi google_apis/armeabi-v7a
     # start the emulator
     - emulator -avd myemulator-google  -no-audio -no-window:
         background: true
