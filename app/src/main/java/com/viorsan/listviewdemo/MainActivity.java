@@ -7,14 +7,18 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.commonsware.cwac.merge.MergeAdapter;
 import com.viorsan.listviewdemo.Adapters.VisitorListAdapter;
 import com.viorsan.listviewdemo.Models.DATE_TYPE;
+import com.viorsan.listviewdemo.Models.Visitor;
+import com.viorsan.listviewdemo.Models.VisitorGroup;
 import com.viorsan.listviewdemo.Models.Visitors;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ListActivity {
     public static final String TAG = MainActivity.class.getName();
@@ -40,6 +44,13 @@ public class MainActivity extends ListActivity {
         private VisitorListAdapter twodaysago;
         private VisitorListAdapter threedaysago;
         private VisitorListAdapter before;
+        private VisitorGroup todayGroup;
+        private VisitorGroup yesterdayGroup;
+        private VisitorGroup twoDaysAgoGroup;
+        private VisitorGroup threeDaysAgoGroup;
+        private VisitorGroup beforeGroup;
+
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -55,12 +66,31 @@ public class MainActivity extends ListActivity {
         protected Void doInBackground(Void...params) {
             //сортируем хотя на самом деле это и НЕ НУЖНО (учитывая как выполняется генерация)
             Visitors.get().sort();
-            //получаем списки (там проходы по списку)
-            today=buildListForDateType(DATE_TYPE.TODAY);
-            yesterday=buildListForDateType(DATE_TYPE.YESTERDAY);
-            twodaysago=buildListForDateType(DATE_TYPE.TWO_DAYS_AGO);
-            threedaysago=buildListForDateType(DATE_TYPE.THREE_DAYS_AGO);
-            before=buildListForDateType(DATE_TYPE.BEFORE);
+            //делаем выборки
+            todayGroup=new VisitorGroup(
+                    DATE_TYPE.TODAY,
+                    Visitors.get().getPeopleVisitedAt(DATE_TYPE.TODAY)
+            );
+            yesterdayGroup=new VisitorGroup(
+                    DATE_TYPE.YESTERDAY,
+                    Visitors.get().getPeopleVisitedAt(DATE_TYPE.YESTERDAY)
+            );
+            twoDaysAgoGroup=new VisitorGroup(
+                    DATE_TYPE.TWO_DAYS_AGO,
+                    Visitors.get().getPeopleVisitedAt(DATE_TYPE.TWO_DAYS_AGO)
+            );
+            threeDaysAgoGroup=new VisitorGroup(
+                    DATE_TYPE.THREE_DAYS_AGO,
+                    Visitors.get().getPeopleVisitedAt(DATE_TYPE.THREE_DAYS_AGO)
+            );
+            beforeGroup=new VisitorGroup(
+                    DATE_TYPE.BEFORE,
+                    Visitors.get().getPeopleVisitedAt(DATE_TYPE.BEFORE)
+            );
+
+            for (Visitor v:Visitors.get().getPeople()) {
+                Log.d(TAG,v.getDateType().getStringValue(MainActivity.this)+ " "+ v.getName());
+            }
 
             return null;
         };
@@ -68,21 +98,20 @@ public class MainActivity extends ListActivity {
         @Override
         protected void onPostExecute(Void result) {
             //обновляем GUI
-            //используем merge adapter от CommonsWare
-            adapter=new MergeAdapter();
-            adapter.addView(buildLabel(R.string.today));
-            adapter.addAdapter(today);
-            adapter.addView(buildLabel(R.string.yesterday));
-            adapter.addAdapter(yesterday);
-            adapter.addView(buildLabel(R.string.twodaysago));
-            adapter.addAdapter(twodaysago);
-            adapter.addView(buildLabel(R.string.threedaysago));
-            adapter.addAdapter(threedaysago);
-            adapter.addView(buildLabel(R.string.before));
-            adapter.addAdapter(before);
 
 
-            setListAdapter(adapter);
+            ArrayList<VisitorGroup> groups=new ArrayList<>();
+            groups.add(todayGroup);
+            groups.add(yesterdayGroup);
+            groups.add(twoDaysAgoGroup);
+            groups.add(threeDaysAgoGroup);
+            groups.add(beforeGroup);
+
+
+            VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
+                    MainActivity.this,groups);
+
+            setListAdapter(visitorListAdapter);
             //разделитель нам не нужен
             //getResources().getColor() deprecated на Android 6.0
             getListView().setDivider(new ColorDrawable(ContextCompat.getColor(MainActivity.this,android.R.color.transparent)));
@@ -96,27 +125,6 @@ public class MainActivity extends ListActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    /**
-     * Адаптер для списка для посещенных в заданную дату
-     * @param dateType
-     * @return
-     */
-    private VisitorListAdapter buildListForDateType(DATE_TYPE dateType) {
-        return new VisitorListAdapter(
-                this,
-                Visitors.get().getPeopleVisitedAt(dateType)
-    );
-        //в принципе конечно с одним элементом в данном случае можно было и simple_list_item_1
-        /*
-        return new ArrayAdapter<String>(
-                this,
-                //R.layout.sublist,
-                android.R.layout.simple_list_item_1,
-                result
-        );*/
-
     }
 
 
