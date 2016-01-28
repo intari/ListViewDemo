@@ -1,6 +1,10 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
+
+
+com.android.ddmlib.DdmPreferences.setTimeOut(600000)
+
 android {
     compileSdkVersion configCompileSdkVersion
     buildToolsVersion configBuildToolsVersion
@@ -24,7 +28,7 @@ android {
             testCoverageEnabled true
         }
     }
-    //https://code.google.com/p/android/issues/detail?id=104305
+    //https://stackoverflow.com/questions/33499046/android-project-automation-test-in-circleci-build-failed-with-an-exception
     adbOptions {
         timeOutInMs 5 * 60 * 1000 // 5 minutes
     }
