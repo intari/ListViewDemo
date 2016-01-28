@@ -5,6 +5,8 @@ machine:
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    ANDROID_API_LEVEL=23
+    ANDROID_ABI=google_apis/armeabi-v7a
 
 dependencies:
   pre:
@@ -15,9 +17,9 @@ dependencies:
 test:
   override:
     # create emulator
-    - android create avd -n myemulator-google-22 -t "Google Inc.:Google APIs:22" --abi armeabi-v7a -s "1080x1920"
+    - android create avd --force -n myemulator-google-$ANDROID_API_LEVEL -t "Google Inc.:Google APIs:"$ANDROID_API_LEVEL --abi $ANDROID_ABI -s "1080x1920"
     # start the emulator
-    - emulator -avd myemulator-google-22  -no-audio -no-window:
+    - emulator -avd myemulator-google-$ANDROID_API_LEVEL  -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
