@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MergeAdapterDemo</string>
+    <string name="app_name">ListViewDemo</string>
     <string name="action_settings">Настройки</string>
     <string name="before">Ранее</string>
     <string name="threedaysago">3 дня назад</string>
