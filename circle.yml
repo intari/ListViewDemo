@@ -14,8 +14,10 @@ dependencies:
 
 test:
   override:
+    # create emulator
+    - android create avd -n myemulator-google-22 -t "Google Inc.:Google APIs:22" --abi armeabi-v7a -s "1080x1920"
     # start the emulator
-    - emulator -avd circleci-android22 -no-audio -no-window:
+    - emulator -avd myemulator-google-22  -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
