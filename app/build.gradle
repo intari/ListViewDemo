@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName project.version
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-        com.android.ddmlib.DdmPreferences.setTimeOut(60000)
+        com.android.ddmlib.DdmPreferences.setTimeOut(5 * 60 * 1000); //5 minutes
 
 
     }
