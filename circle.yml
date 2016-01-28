@@ -5,8 +5,8 @@ machine:
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
-    ANDROID_API_LEVEL=23
-    ANDROID_ABI=google_apis/armeabi-v7a
+    ANDROID_API_LEVEL: 23
+    ANDROID_ABI: google_apis/armeabi-v7a
 
 dependencies:
   pre:
