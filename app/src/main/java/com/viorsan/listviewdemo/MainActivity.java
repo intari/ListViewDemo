@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo;
+package com.viorsan.listviewdemo;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -12,14 +12,13 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.commonsware.cwac.merge.MergeAdapter;
-import com.viorsan.mergeadapterdemo.Adapters.VisitorListAdapter;
-import com.viorsan.mergeadapterdemo.Models.DATE_TYPE;
-import com.viorsan.mergeadapterdemo.Models.Visitors;
+import com.viorsan.listviewdemo.Adapters.VisitorListAdapter;
+import com.viorsan.listviewdemo.Models.DATE_TYPE;
+import com.viorsan.listviewdemo.Models.Visitors;
 
 public class MainActivity extends ListActivity {
     public static final String TAG = MainActivity.class.getName();
 
-    private MergeAdapter adapter=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

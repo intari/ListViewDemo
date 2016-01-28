@@ -1,9 +1,9 @@
-package com.viorsan.mergeadapterdemo.Models;
+package com.viorsan.listviewdemo.Models;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.viorsan.mergeadapterdemo.R;
+import com.viorsan.listviewdemo.R;
 
 /**
  * Created by Dmitriy Kazimirov, e-mail:dmitriy.kazimirov@viorsan.com on 26.01.16.

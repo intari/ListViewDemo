@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo;
+package com.viorsan.listviewdemo;
 
 import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
@@ -10,7 +10,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 
 

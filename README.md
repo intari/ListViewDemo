@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/intari/MergeAdapterDemo.svg)](https://travis-ci.org/intari/MergeAdapterDemo)
-[![codecov.io](https://codecov.io/github/intari/MergeAdapterDemo/coverage.svg?branch=master)](https://codecov.io/github/intari/MergeAdapterDemo?branch=master)
+[![Build Status](https://travis-ci.org/intari/ListViewDemo.svg)](https://travis-ci.org/intari/ListViewDemo)
+[![codecov.io](https://codecov.io/github/intari/ListViewDemo/coverage.svg?branch=master)](https://codecov.io/github/intari/ListViewDemo?branch=master)
 
-This is example how to use [CWAC Merge] (https://github.com/commonsguy/cwac-merge/) and other things.
+This is example how to use ListViews and other things.
 
 Code comments are in Russian.
 

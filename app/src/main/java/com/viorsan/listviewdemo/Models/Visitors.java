@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo.Models;
+package com.viorsan.listviewdemo.Models;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,4 @@
-package com.viorsan.mergeadapterdemo.Models;
-
-import android.util.Log;
+package com.viorsan.listviewdemo.Models;
 
 import org.joda.time.DateTime;
 

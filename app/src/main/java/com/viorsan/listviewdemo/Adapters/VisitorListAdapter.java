@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo.Adapters;
+package com.viorsan.listviewdemo.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.viorsan.mergeadapterdemo.Models.Visitor;
-import com.viorsan.mergeadapterdemo.R;
+import com.viorsan.listviewdemo.Models.Visitor;
+import com.viorsan.listviewdemo.R;
 
 import java.util.ArrayList;
 

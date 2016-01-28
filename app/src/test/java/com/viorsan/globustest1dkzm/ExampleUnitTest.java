@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo;
+package com.viorsan.listviewdemo;
 
 import org.junit.Test;
 

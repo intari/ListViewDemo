@@ -1,4 +1,4 @@
-package com.viorsan.mergeadapterdemo.Models;
+package com.viorsan.listviewdemo.Models;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;

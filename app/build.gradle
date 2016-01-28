@@ -1,8 +1,4 @@
-repositories {
-    maven {
-        url "https://s3.amazonaws.com/repo.commonsware.com"
-    }
-}
+
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
 android {
@@ -10,7 +6,7 @@ android {
     buildToolsVersion configBuildToolsVersion
 
     defaultConfig {
-        applicationId "com.viorsan.mergeadapterdemo"
+        applicationId "com.viorsan.listviewdemo"
         minSdkVersion 16
 
         targetSdkVersion configTargetSdkVersion
@@ -45,6 +41,5 @@ dependencies {
     androidTestCompile support.annotations
 
     compile 'net.danlew:android.joda:2.7.1'
-    compile 'com.commonsware.cwac:merge:1.1.+'
 
 }
