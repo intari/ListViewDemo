@@ -15,9 +15,10 @@ dependencies:
 test:
   override:
     # create emulator
-    - android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
+    #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
+    - android create avd --force -n myemulator -t "android-16" --abi-armeabi-v7a -s "1080x1920"
     # start the emulator
-    - emulator -avd myemulator-google  -no-audio -no-window:
+    - emulator -avd myemulator  -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
