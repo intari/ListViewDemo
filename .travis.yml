@@ -3,10 +3,11 @@ jdk: oraclejdk8
 
 env:
   global:
-  - ANDROID_TARGET=android-16  
+  - ANDROID_TARGET=android-16
   - ANDROID_ABI=armeabi-v7a
   - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
 
+cache: false
   
 android:
   components:
@@ -26,6 +27,9 @@ script:
     - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
     - ./gradlew connectedCheck
     
+#    - ./gradlew clean
+#    - ./gradlew build lint test jacocoTestReport
+#    - ./gradlew test
   
   
 after_success:
