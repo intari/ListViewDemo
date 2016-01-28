@@ -4,11 +4,11 @@ machine:
     PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-2.9/bin:$PATH"
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    #GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
   pre:
-    - wget "https://services.gradle.org/distributions/gradle-2.9-bin.zip"; unzip gradle-2.9-bin.zip
+    #- wget "https://services.gradle.org/distributions/gradle-2.9-bin.zip"; unzip gradle-2.9-bin.zip
     - echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
     - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 
@@ -16,9 +16,11 @@ test:
   override:
     # create emulator
     #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
-    - echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
+    #- echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
+    #this COULD work: https://circleci.com/gh/intari/ListViewDemo/19
+    - android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
     # start the emulator
-    - emulator -avd myemulator  -no-audio -no-window:
+    - emulator -avd myemulator-google  -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
@@ -29,7 +31,7 @@ test:
     # build and test
     - ./gradlew clean build jacocoTestReport assembleAndroidTest
     # run tests  against the emulator.
-    - ./gradlew connectedAndroidTest -PdisablePreDex
+    - ./gradlew connectedAndroidTest
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
