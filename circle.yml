@@ -29,7 +29,7 @@ test:
     - sleep 30
     - adb shell input keyevent 82
     # build and test
-    - ./gradlew clean build jacocoTestReport assembleAndroidTest
+    - ./gradlew clean build test jacocoTestReport assembleAndroidTest
     # run tests  against the emulator.
     - ./gradlew connectedAndroidTest
         timeout: 360
@@ -37,5 +37,6 @@ test:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
     # Codecov.io upload 
     - bash <(curl -s https://codecov.io/bash)
