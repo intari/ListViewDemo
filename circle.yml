@@ -16,7 +16,7 @@ test:
   override:
     # create emulator
     #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
-    - echo n | android create avd --force -n myemulator -t "android-16" --abi-armeabi-v7a -s "1080x1920"
+    - echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
     # start the emulator
     - emulator -avd myemulator  -no-audio -no-window:
         background: true
