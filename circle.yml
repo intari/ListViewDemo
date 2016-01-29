@@ -12,7 +12,7 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
 notify:
     webhooks:
-     -url: https://intari-listviewdemo.getbadges.io/api/app/webhook/e7e99974-300a-415c-b8ff-603f3afbb22c
+     - url: https://intari-listviewdemo.getbadges.io/api/app/webhook/e7e99974-300a-415c-b8ff-603f3afbb22c
      
 test:  
   override:
