@@ -24,6 +24,8 @@ import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 import org.robolectric.fakes.RoboMenu;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowListView;
+import org.robolectric.shadows.ShadowLog;
 import org.robolectric.util.ActivityController;
 
 
@@ -45,6 +47,7 @@ public class MainActivityTestRobolectric {
         // onCreate(...) => onStart() => onPostCreate(...) => onResume()
         activity = Robolectric.setupActivity(MainActivity.class);
 
+        ShadowLog.stream = System.out; //This is for printing log messages in console
     }
     // @Test => JUnit 4 annotation specifying this is a test to be run
     // The test simply checks that our TextView exists and has the text "Hello world!"
@@ -73,10 +76,63 @@ public class MainActivityTestRobolectric {
         groups.add(todayGroup);
         VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
                 activity,groups);
-
         activity.setListAdapter(visitorListAdapter);
         assertNotNull("ListView wasn't setup correctly", activity.getListView());
         assertNotNull("ListAdapter wasn't setup correctly", activity.getListAdapter());
+
+    }
+    @Test
+    public void validateListViewContentsToday() {
+        ListView listView=(ListView)activity.getListView();
+        assertNotNull("ListView not found", listView);
+        ShadowListView shadowListView=Shadows.shadowOf(listView);
+        Visitors.get().sort();
+        VisitorGroup todayGroup=new VisitorGroup(
+                DATE_TYPE.TODAY,
+                Visitors.get().getPeopleVisitedAt(DATE_TYPE.TODAY)
+        );
+        ArrayList<VisitorGroup> groups=new ArrayList<>();
+        groups.add(todayGroup);
+        VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
+                activity,groups);
+        activity.setListAdapter(visitorListAdapter);
+        shadowListView.populateItems();//прогружаем список
+        String correctHeaderLine = RuntimeEnvironment.application.getString(R.string.today);
+
+        //проверяем что первое поле это действительно 'Today'
+        //да - у нас следующий тест отдельно проверяет ListAdapter но тут мы проверяем ListView
+        //более правильно все эти
+        ShadowLog.d("Checking that 'Today' exist", (String) listView.getAdapter().getItem(0));
+        assertTrue("No 'today'", correctHeaderLine.equals((String) listView.getAdapter().getItem(0)));
+        assertTrue("too much data in listview", listView.getAdapter().getCount() != Visitors.NUM_VISITS_TO_GENERATE);
+    }
+    @Test
+    public void validateListViewContentsYesterday() {
+        ListView listView=(ListView)activity.getListView();
+        assertNotNull("ListView not found", listView);
+        ShadowListView shadowListView=Shadows.shadowOf(listView);
+        Visitors.get().sort();
+        VisitorGroup todayGroup=new VisitorGroup(
+                DATE_TYPE.TODAY,
+                Visitors.get().getPeopleVisitedAt(DATE_TYPE.TODAY)
+        );
+        VisitorGroup yesterdayGroup=new VisitorGroup(
+                DATE_TYPE.YESTERDAY,
+                Visitors.get().getPeopleVisitedAt(DATE_TYPE.YESTERDAY)
+        );
+        ArrayList<VisitorGroup> groups=new ArrayList<>();
+        groups.add(todayGroup);
+        groups.add(yesterdayGroup);
+        VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
+                activity,groups);
+        activity.setListAdapter(visitorListAdapter);
+        shadowListView.populateItems();//прогружаем список
+        String correctHeaderLine = RuntimeEnvironment.application.getString(R.string.yesterday);
+
+        //проверяем что первое поле это действительно 'Yesterday'
+        //да - у нас следующий тест отдельно проверяет ListAdapter но тут мы проверяем ListView
+        ShadowLog.d("Checking that 'Yesterday' exist", (String) listView.getAdapter().getItem(Visitors.NUM_VISITS_TO_GENERATE+1));
+        assertTrue("No 'Yesterday'", correctHeaderLine.equals((String) listView.getAdapter().getItem(Visitors.NUM_VISITS_TO_GENERATE+1)));
     }
 
     @Test
@@ -93,13 +149,17 @@ public class MainActivityTestRobolectric {
 
         //проверяем что ListAdapter коррктные данные данные для нашего случая возвращает
         assertTrue("VisitorListAdapter has zero elements", 0 != visitorListAdapter.getCount());
-        assertTrue("VisitorListAdapter has incorrect number of types",2==visitorListAdapter.getViewTypeCount());
+        assertTrue("VisitorListAdapter has incorrect number of types", 2 == visitorListAdapter.getViewTypeCount());
         assertTrue("VisitorListAdapter's header type is wrong", visitorListAdapter.getItem(0) instanceof String);
         assertTrue("VisitorListAdapter's line type is wrong", visitorListAdapter.getItem(1) instanceof Visitor);
         assertTrue("VisitorListAdapter's header is wrong", "Today".equals((String) visitorListAdapter.getItem(0)));
-        String correctHeaderLine=RuntimeEnvironment.application.getString(R.string.today);
+        assertTrue("VisitorListAdapter's number of elements is wrong",(Visitors.NUM_VISITS_TO_GENERATE+1)==visitorListAdapter.getCount());
+        String correctHeaderLine = RuntimeEnvironment.application.getString(R.string.today);
         assertTrue("VisitorListAdapter's header line", correctHeaderLine.equals((String) visitorListAdapter.getItem(0)));
+        assertTrue("VisitorListAdapter's data size is wrong", Visitors.NUM_VISITS_TO_GENERATE!=visitorListAdapter.getCount());
+
     }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void validateVisitorListAdapterGetItemThrowExceptionIfInvalidData() {
