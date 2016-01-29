@@ -15,10 +15,7 @@ dependencies:
 test:  
   override:
     # build and test
-    - ./gradlew clean 
-    - ./gradlew build 
-    - ./gradlew jacocoTestReport 
-    - ./gradlew assembleAndroidTest
+    - ./gradlew build jacoTestReport assembleAndroidTest
     # create emulator
     #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
     #- echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
