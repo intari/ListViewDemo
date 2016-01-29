@@ -14,6 +14,11 @@ dependencies:
 
 test:  
   override:
+    # build and test
+    - ./gradlew clean 
+    - ./gradlew build 
+    - ./gradlew jacocoTestReport 
+    - ./gradlew assembleAndroidTest
     # create emulator
     #-t "Google Inc.:Google APIs:23" --abi google_apis/armeabi-v7a
     #- echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
@@ -29,8 +34,6 @@ test:
     # unlock the emulator screen
     - sleep 30
     - adb shell input keyevent 82
-    # build and test
-    - ./gradlew clean build jacocoTestReport assembleAndroidTest
     # run tests  against the emulator.
     - ./gradlew connectedAndroidTest -PdisablePreDex
     # copy the build outputs to artifacts
