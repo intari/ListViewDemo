@@ -4,6 +4,7 @@ package com.viorsan.listviewdemo;
  * Created by Dmitriy Kazimirov, e-mail:dmitriy.kazimirov@viorsan.com on 29.01.16.
  */
 // Static imports for assertion methods
+import android.app.Activity;
 import android.os.Build;
 import android.widget.ListView;
 
@@ -19,7 +20,11 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
+import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
+import org.robolectric.fakes.RoboMenu;
+import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.util.ActivityController;
 
 
 import java.util.ArrayList;
@@ -122,5 +127,22 @@ public class MainActivityTestRobolectric {
         //проверяем что ListAdapter коррктно дохнет
         visitorListAdapter.getItem(0);
     }
+    /*
+    @Test
+    public void validateOptionsMenu() {
+        MainActivity act = Robolectric.setupActivity(MainActivity.class);
+        ShadowActivity shadowActivity= Shadows.shadowOf(act);
+        RoboMenu menu=new RoboMenu();
+        shadowActivity.onCreateOptionsMenu(menu);
+        assertNotNull("Options menu was not created", shadowActivity.getOptionsMenu());
+    }
+    @Test
+    public void validateOptionsMenuInRegularLifecycle() {
+        ActivityController activityController=Robolectric.buildActivity(MainActivity.class);
+        Activity act=(Activity)activityController.create().start().resume().get();
+        ShadowActivity shadowActivity= Shadows.shadowOf(act);
+        assertNotNull("Options menu was not created in regular lifecycle", shadowActivity.getOptionsMenu());
+    }
+    */
 
 }
