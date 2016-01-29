@@ -128,18 +128,4 @@ public class MainActivity extends ListActivity {
     }
 
 
-    /**
-     * Создаем TextView с заданным текстом (для использования в качестве разделителя)
-     * @param resId ресурс с текстом
-     * @return
-     */
-    private View buildLabel(int resId) {
-        TextView result=new TextView(this);
-        result.setText(resId);
-        //задаем выделение
-        result.setTypeface(result.getTypeface(), Typeface.BOLD);
-        return(result);
-    }
-
-
 }
