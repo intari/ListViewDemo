@@ -5,6 +5,9 @@ package com.viorsan.listviewdemo;
  */
 // Static imports for assertion methods
 import android.os.Build;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +24,9 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
+import org.robolectric.fakes.RoboMenu;
+
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
@@ -89,11 +95,11 @@ public class MainActivityTestRobolectric {
         //проверяем что ListAdapter коррктные данные данные для нашего случая возвращает
         assertTrue("VisitorListAdapter has zero elements", 0 != visitorListAdapter.getCount());
         assertTrue("VisitorListAdapter has incorrect number of types",2==visitorListAdapter.getViewTypeCount());
-        assertTrue("VisitorListAdapter's header type is wrong",visitorListAdapter.getItem(0) instanceof String );
-        assertTrue("VisitorListAdapter's line type is wrong",visitorListAdapter.getItem(1) instanceof Visitor);
+        assertTrue("VisitorListAdapter's header type is wrong", visitorListAdapter.getItem(0) instanceof String);
+        assertTrue("VisitorListAdapter's line type is wrong", visitorListAdapter.getItem(1) instanceof Visitor);
         assertTrue("VisitorListAdapter's header is wrong", "Today".equals((String) visitorListAdapter.getItem(0)));
         String correctHeaderLine=RuntimeEnvironment.application.getString(R.string.today);
-        assertTrue("VisitorListAdapter's header line",correctHeaderLine.equals((String)visitorListAdapter.getItem(0)));
+        assertTrue("VisitorListAdapter's header line", correctHeaderLine.equals((String) visitorListAdapter.getItem(0)));
     }
 
 }
