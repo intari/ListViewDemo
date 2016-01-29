@@ -35,7 +35,8 @@ test:
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
-    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    # copy results of Instrumentation tests (emulator-based)
+    #- cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
     - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
     # Codecov.io upload 
     - bash <(curl -s https://codecov.io/bash)
