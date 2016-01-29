@@ -1,4 +1,3 @@
-#based off https://github.com/circleci/EspressoSample
 machine:
   environment:
     PATH: "~/$CIRCLE_PROJECT_REPONAME/gradle-2.9/bin:$PATH"
@@ -21,18 +20,18 @@ test:
     #- echo n | android create avd --force -n myemulator -t "android-16" --abi armeabi-v7a -s "1080x1920"
     # circleci-android22
     #this COULD work: https://circleci.com/gh/intari/ListViewDemo/19
-    - android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:22" --abi google_apis/armeabi-v7a 
+    #- android create avd --force -n myemulator-google -t "Google Inc.:Google APIs:22" --abi google_apis/armeabi-v7a 
     # start the emulator 
-    - emulator -avd myemulator-google  -no-audio -no-window:
-        background: true
-        parallel: true
+    #- emulator -avd myemulator-google  -no-audio -no-window:
+    #    background: true
+    #    parallel: true
     # wait for it to have booted
-    - circle-android wait-for-boot
+    #- circle-android wait-for-boot
     # unlock the emulator screen
-    - sleep 30
-    - adb shell input keyevent 82
+    #- sleep 30
+    #- adb shell input keyevent 82
     # run tests  against the emulator.
-    - ./gradlew connectedAndroidTest -PdisablePreDex
+    #- ./gradlew connectedAndroidTest -PdisablePreDex
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
