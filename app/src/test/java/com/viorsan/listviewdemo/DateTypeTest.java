@@ -40,19 +40,19 @@ public class DateTypeTest {
     public void testDateTypeCorrectnessTwoDaysAgo() {
         DATE_TYPE dateType=DATE_TYPE.TWO_DAYS_AGO;
         String value= RuntimeEnvironment.application.getString(R.string.twodaysago);
-        assertTrue("2 days ago:Date type's text is conversion is wrong",value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
+        assertTrue("2 days ago:Date type's text is conversion is wrong", value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
     }
     @Test
     public void testDateTypeCorrectnessThreeDaysAgo() {
         DATE_TYPE dateType=DATE_TYPE.THREE_DAYS_AGO;
         String value= RuntimeEnvironment.application.getString(R.string.threedaysago);
-        assertTrue("3 days ago:Date type's text is conversion is wrong",value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
+        assertTrue("3 days ago:Date type's text is conversion is wrong", value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
     }
     @Test
     public void testDateTypeCorrectnessBefore() {
         DATE_TYPE dateType=DATE_TYPE.BEFORE;
         String value= RuntimeEnvironment.application.getString(R.string.before);
-        assertTrue("Before:Date type's text is conversion is wrong",value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
+        assertTrue("Before:Date type's text is conversion is wrong", value.equals(dateType.getStringValue(RuntimeEnvironment.application)));
     }
 
 
