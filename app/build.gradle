@@ -49,6 +49,8 @@ dependencies {
 
     androidTestCompile support.annotations
 
+    testCompile 'org.robolectric:robolectric:3.0'
+
     compile 'net.danlew:android.joda:2.7.1'
 
 }
