@@ -10,7 +10,10 @@ dependencies:
     - wget "https://services.gradle.org/distributions/gradle-2.9-bin.zip"; unzip gradle-2.9-bin.zip
     - echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
     - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
-
+notify:
+    webhooks:
+     -url: https://intari-listviewdemo.getbadges.io/api/app/webhook/e7e99974-300a-415c-b8ff-603f3afbb22c
+     
 test:  
   override:
     # build and test
