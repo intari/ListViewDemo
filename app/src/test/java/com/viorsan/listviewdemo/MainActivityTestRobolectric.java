@@ -5,11 +5,7 @@ package com.viorsan.listviewdemo;
  */
 // Static imports for assertion methods
 import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.viorsan.listviewdemo.Adapters.VisitorListAdapter;
 import com.viorsan.listviewdemo.Models.DATE_TYPE;
@@ -24,9 +20,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import org.robolectric.fakes.RoboMenu;
 
-import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
@@ -100,6 +94,33 @@ public class MainActivityTestRobolectric {
         assertTrue("VisitorListAdapter's header is wrong", "Today".equals((String) visitorListAdapter.getItem(0)));
         String correctHeaderLine=RuntimeEnvironment.application.getString(R.string.today);
         assertTrue("VisitorListAdapter's header line", correctHeaderLine.equals((String) visitorListAdapter.getItem(0)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validateVisitorListAdapterGetItemThrowExceptionIfInvalidData() {
+        Visitors.get().sort();
+        VisitorGroup todayGroup=new VisitorGroup(
+                DATE_TYPE.TODAY,
+                Visitors.get().getPeopleVisitedAt(DATE_TYPE.TODAY)
+        );
+        ArrayList<VisitorGroup> groups=new ArrayList<>();
+        groups.add(todayGroup);
+        VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
+                activity,groups);
+
+        //проверяем что ListAdapter коррктно дохнет
+        visitorListAdapter.getItem(Integer.MAX_VALUE);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validateVisitorListAdapterGetItemThrowExceptionIfNoData() {
+        Visitors.get().sort();
+        ArrayList<VisitorGroup> groups=new ArrayList<>();
+        VisitorListAdapter visitorListAdapter=new VisitorListAdapter(
+                activity,groups);
+
+        //проверяем что ListAdapter коррктно дохнет
+        visitorListAdapter.getItem(0);
     }
 
 }
