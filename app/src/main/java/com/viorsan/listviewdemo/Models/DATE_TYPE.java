@@ -31,13 +31,10 @@ public enum DATE_TYPE {
                 return context.getString(R.string.twodaysago);
             case THREE_DAYS_AGO:
                 return context.getString(R.string.threedaysago);
-            case BEFORE:
-                return context.getString(R.string.before);
-
+            //других веток же нет все равно, а покрытие тестами для этого файла хочется...
+            //case BEFORE:
             default:
-                //по хорошему не надо но а вдруг забуду где то
-                Log.d(TAG,"Requested string value of DATE_TYPE which was not setup, will return unknown");
-                return context.getString(R.string.unknown);
+                return context.getString(R.string.before);
         }
     }
 }
