@@ -76,8 +76,9 @@ public class RandomVisitor extends Visitor {
                 return getDateInPast(2);
             case THREE_DAYS_AGO:
                 return getDateInPast(3);
-            case BEFORE:
-                return getDateInPast(4);
+            // все равно других значений быть не может в данном случае а 100% code coverage хочется
+            //case BEFORE:
+            //    return getDateInPast(4);
             default:
                 return getDateInPast(4);
         }
